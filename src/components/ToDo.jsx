@@ -100,7 +100,7 @@ const ToDO = () => {
                                                     checked={item.completed}
                                                     onChange={() => handleToggleComplete(item.id)}
                                                 />
-                                            </span> */}
+                                            </span> */  }
                                             <span>
                                                 <h3>{item.name}</h3>
                                                 <p>{item.description}</p>
