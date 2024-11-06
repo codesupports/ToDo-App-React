@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import './style.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ToDO = () => {
     const [inputData, setInputData] = useState('');
@@ -9,6 +11,13 @@ const ToDO = () => {
     const [getEditId, setGetEditId] = useState();
     const [editItem, setEditItem] = useState(-1);
     const [check, setCheck] = useState(false); // Use for checkbox
+
+    const toastNotifySuccess = () => toast.success("ToDo Added Successfully!");
+    const toastNotifyDelete = () => toast.success("Successfully deleted!");
+    const toastNotifyUpdate = () => toast.success("Successfully Updated!");
+
+
+
     const handleAddData = () => {
         if (inputData == "" || inputDes == "") {
             alert('Please fill the Name and description!')
@@ -16,6 +25,7 @@ const ToDO = () => {
             setData([{ id: Date.now(), name: inputData, description: inputDes, completed: check, }, ...data]);
             setInputDes('');
             setInputData('');
+            toastNotifySuccess()
         }
     };
 
@@ -32,6 +42,7 @@ const ToDO = () => {
             return item.id !== id;
         });
         setData(dt);
+        toastNotifyDelete()
     };
 
     const handleUpdate = (val) => {
@@ -40,6 +51,7 @@ const ToDO = () => {
         setInputData('');
         setInputDes('');
         setIsEdit(false);
+        toastNotifyUpdate()
     };
     // console.log('data', data);
 
@@ -53,6 +65,7 @@ const ToDO = () => {
     // }, [check, data])
     return (
         <div className="todo-app">
+            <ToastContainer autoClose={3000} />
             <header>
                 <h1>My Todos</h1>
             </header>
